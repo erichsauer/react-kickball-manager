@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render a player’s details 1`] = `
+<div>
+  <a
+    href="/players"
+  >
+    Back to Players
+  </a>
+  <h1>
+    Ben E. Jetts
+  </h1>
+  <p>
+    Pitcher
+     for the 
+    Bridge City Sneakers
+  </p>
+</div>
+`;

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render a footer 1`] = `
+<div>
+  <footer>
+    ©2021 – Alchemy Code Lab
+  </footer>
+</div>
+`;
