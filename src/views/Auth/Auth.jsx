@@ -15,13 +15,24 @@ function Auth({ setCurrentUser }) {
     e.preventDefault()
     setErrorMessage('')
     if (!email || !password) return
-    try {
-      const { user } = await signInUser(email, password)
+    if (type === 'signin') {
+      try {
+        const { user } = await signInUser(email, password)
 
-      setCurrentUser(user)
-      history.push('/')
-    } catch (error) {
-      setErrorMessage(error.message || 'Something went wrong. Please try again.')
+        setCurrentUser(user)
+        history.push('/')
+      } catch (error) {
+        setErrorMessage(error.message || 'Something went wrong. Please try again.')
+      }
+    } else {
+      try {
+        const { user } = await signUpUser(email, password)
+
+        setCurrentUser(user)
+        history.push('/')
+      } catch (error) {
+        setErrorMessage(error.message || 'Something went wrong. Please try again.')
+      }
     }
   }
   return (
@@ -33,6 +44,13 @@ function Auth({ setCurrentUser }) {
           onClick={() => setType('signin')}
         >
           Sign In
+        </button>
+        <button
+          type="button"
+          className={classNames({ active: type === 'signup' })}
+          onClick={() => setType('signup')}
+        >
+          Sign Up
         </button>
       </div>
       {errorMessage && <div className="error-message">{errorMessage}</div>}
@@ -48,7 +66,11 @@ function Auth({ setCurrentUser }) {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <input type="submit" value="Sign In" disabled={!email || !password} />
+        <input
+          type="submit"
+          value={type === 'signin' ? 'Sign In' : 'Sign Up'}
+          disabled={!email || !password}
+        />
       </form>
     </div>
   )
